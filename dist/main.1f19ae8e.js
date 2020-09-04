@@ -118,6 +118,26 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"main.js":[function(require,module,exports) {
+var $siteList = $('.siteList');
+var $lastLi = $siteList.find('li.lastLi');
+var x = localStorage.getItem('x');
+var xObject = JSON.parse(x);
+var hashMap = xObject || [{
+  logo: 'A',
+  url: 'https://www.acfun.cn'
+}, {
+  logo: './images/bilibili.png',
+  url: 'https://www.bilibili.com'
+}];
+
+var render = function render() {
+  $siteList.find('li:not(.lastLi)').remove();
+  hashMap.forEach(function (node) {
+    var $li = $("<li>\n      <a href=\"".concat(node.url, "\">\n        <div class=\"site\">\n          <div class=\"logo\">").concat(node.logo[0], "</div>\n          <div class=\"link\">").concat(node.url, "</div>\n        </div>\n      </a>\n  </li>")).insertBefore($lastLi);
+  });
+};
+
+render();
 $('.addButton').on('click', function () {
   var url = window.prompt('请问你要添加的网址是啥？');
 
@@ -126,10 +146,18 @@ $('.addButton').on('click', function () {
   }
 
   console.log(url);
-  var $siteList = $('.siteList');
-  var $lastLi = $siteList.find('li.lastLi');
-  var $li = $("<li>\n    <a href=\"".concat(url, "\">\n      <div class=\"site\">\n        <div class=\"logo\">").concat(url[0], "</div>\n        <div class=\"link\">").concat(url, "</div>\n      </div>\n    </a>\n</li>")).insertBefore($lastLi);
+  hashMap.push({
+    logo: url[0],
+    logoType: 'text',
+    url: url
+  });
+  render();
 });
+
+window.onbeforeunload = function () {
+  var string = JSON.stringify(hashMap);
+  localStorage.setItem('x', string); // 在本地的localStorage存储一个x，它的值为string
+};
 },{}],"C:/Users/郭高/AppData/Local/Yarn/Data/global/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
