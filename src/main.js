@@ -4,20 +4,41 @@ const x = localStorage.getItem('x')
 const xObject = JSON.parse(x)
 const hashMap = xObject || [
   { logo: 'A', url: 'https://www.acfun.cn' },
-  { logo: './images/bilibili.png', url: 'https://www.bilibili.com' },
+  {
+    logo: 'B',
+    url: 'https://www.bilibili.com',
+  },
 ]
+const simplifyUrl = (url) => {
+  return url
+    .replace('https://', '')
+    .replace('http://', '')
+    .replace('www.', '')
+    .replace(/\/.*/, '')
+} // 简化url
 
 const render = () => {
   $siteList.find('li:not(.lastLi)').remove()
-  hashMap.forEach((node) => {
+  hashMap.forEach((node, index) => { // 添加index，方便删除
     const $li = $(`<li>
-      <a href="${node.url}">
-        <div class="site">
-          <div class="logo">${node.logo[0]}</div>
-          <div class="link">${node.url}</div>
+      <div class="site">
+        <div class="logo">${simplifyUrl(node.url)[0]}</div>
+        <div class="link">${simplifyUrl(node.url)}</div>
+        <div class="close">
+          <svg class="icon">
+            <use xlink:href="#icon-close"></use>
+          </svg>
         </div>
-      </a>
-  </li>`).insertBefore($lastLi)
+      </div>
+    </li>`).insertBefore($lastLi)
+    $li.on('click', () => {
+      window.open(node.url)
+    }) // 替代a标签跳转
+    $li.on('click', '.close', (e) => {
+      e.stopPropagation() // 阻止冒泡
+      hashMap.splice(index, 1)
+      render()
+    })
   })
 }
 render()
@@ -30,7 +51,6 @@ $('.addButton').on('click', () => {
   console.log(url)
   hashMap.push({
     logo: url[0],
-    logoType: 'text',
     url: url,
   })
   render()

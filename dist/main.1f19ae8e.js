@@ -126,14 +126,30 @@ var hashMap = xObject || [{
   logo: 'A',
   url: 'https://www.acfun.cn'
 }, {
-  logo: './images/bilibili.png',
+  logo: 'B',
   url: 'https://www.bilibili.com'
 }];
 
+var simplifyUrl = function simplifyUrl(url) {
+  return url.replace('https://', '').replace('http://', '').replace('www.', '').replace(/\/.*/, '');
+}; // 简化url
+
+
 var render = function render() {
   $siteList.find('li:not(.lastLi)').remove();
-  hashMap.forEach(function (node) {
-    var $li = $("<li>\n      <a href=\"".concat(node.url, "\">\n        <div class=\"site\">\n          <div class=\"logo\">").concat(node.logo[0], "</div>\n          <div class=\"link\">").concat(node.url, "</div>\n        </div>\n      </a>\n  </li>")).insertBefore($lastLi);
+  hashMap.forEach(function (node, index) {
+    // 添加index，方便删除
+    var $li = $("<li>\n      <div class=\"site\">\n        <div class=\"logo\">".concat(simplifyUrl(node.url)[0], "</div>\n        <div class=\"link\">").concat(simplifyUrl(node.url), "</div>\n        <div class=\"close\">\n          <svg class=\"icon\">\n            <use xlink:href=\"#icon-close\"></use>\n          </svg>\n        </div>\n      </div>\n    </li>")).insertBefore($lastLi);
+    $li.on('click', function () {
+      window.open(node.url);
+    }); // 替代a标签跳转
+
+    $li.on('click', '.close', function (e) {
+      e.stopPropagation(); // 阻止冒泡
+
+      hashMap.splice(index, 1);
+      render();
+    });
   });
 };
 
@@ -148,7 +164,6 @@ $('.addButton').on('click', function () {
   console.log(url);
   hashMap.push({
     logo: url[0],
-    logoType: 'text',
     url: url
   });
   render();
@@ -186,7 +201,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53744" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63268" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
