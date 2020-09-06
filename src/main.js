@@ -51,7 +51,7 @@ $('.addButton').on('click', () => {
   }
   console.log(url)
   hashMap.push({
-    logo: url[0],
+    logo: simplifyUrl(url)[0],
     url: url,
   })
   render()
@@ -61,3 +61,14 @@ window.onbeforeunload = () => {
   const string = JSON.stringify(hashMap)
   localStorage.setItem('x', string) // 在本地的localStorage存储一个x，它的值为string
 }
+
+$(document).on('keypress', (e) => {
+  const { key } = e
+  // const key = e.key
+  for (let i = 0; i < hashMap.length; i++) {
+    if (hashMap[i].logo === key.toUpperCase()) {
+      console.log(hashMap)
+      window.open(hashMap[i].url)
+    }
+  }
+})

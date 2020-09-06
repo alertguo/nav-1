@@ -73,16 +73,22 @@ body {
   margin: 20px;
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
 }
 @media(min-width: 500px){
   .siteList{
     margin-left: 0;
     margin-right: -25px;
+    justify-content: flex-start;
   }
 }
 .siteList > li {
   margin-bottom: 10px;
-  margin-right: 25px;
+}
+@media(min-width: 500px){
+  .siteList > li {
+    margin-right: 25px;
+  }
 }
 .siteList .site {
   width: 160px;
@@ -95,7 +101,11 @@ body {
   border-radius: 4px;
   padding: 20px 0;
   position: relative;
-  cursor: pointer;
+}
+@media(min-width:500px){
+  .siteList .site {
+    cursor: pointer;
+  }
 }
 .siteList .site > .logo {
   width: 64px;
@@ -114,11 +124,15 @@ body {
   position: absolute;
   right: 5px;
   top: 0;
-  display: none;
-  cursor: default;
 }
-.siteList .site:hover > .close {
-  display: block;
+@media(min-width:500px){
+  .siteList .site  > .close {
+    display: none;
+    cursor: default;
+  }
+  .siteList .site:hover > .close {
+    display: block;
+  }
 }
 .siteList .addButton {
   border: 1px solid blue;

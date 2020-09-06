@@ -163,7 +163,7 @@ $('.addButton').on('click', function () {
 
   console.log(url);
   hashMap.push({
-    logo: url[0],
+    logo: simplifyUrl(url)[0],
     url: url
   });
   render();
@@ -173,6 +173,17 @@ window.onbeforeunload = function () {
   var string = JSON.stringify(hashMap);
   localStorage.setItem('x', string); // 在本地的localStorage存储一个x，它的值为string
 };
+
+$(document).on('keypress', function (e) {
+  var key = e.key; // const key = e.key
+
+  for (var i = 0; i < hashMap.length; i++) {
+    if (hashMap[i].logo === key.toUpperCase()) {
+      console.log(hashMap);
+      window.open(hashMap[i].url);
+    }
+  }
+});
 },{}],"C:/Users/郭高/AppData/Local/Yarn/Data/global/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -201,7 +212,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53310" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62207" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
