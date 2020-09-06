@@ -19,7 +19,8 @@ const simplifyUrl = (url) => {
 
 const render = () => {
   $siteList.find('li:not(.lastLi)').remove()
-  hashMap.forEach((node, index) => { // 添加index，方便删除
+  hashMap.forEach((node, index) => {
+    // 添加index，方便删除
     const $li = $(`<li>
       <div class="site">
         <div class="logo">${simplifyUrl(node.url)[0]}</div>

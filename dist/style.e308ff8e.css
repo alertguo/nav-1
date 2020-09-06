@@ -29,10 +29,23 @@ body {
 .globalHeader {
   margin: 20px;
 }
+@media(min-width:500px){
+  .globalHeader {
+    margin: 80px 0 100px 0;
+  }
+}
 .searchForm {
   display: flex;
   justify-content: space-between;
 }
+@media (min-width: 500px) {
+  .searchForm {
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+/* 屏幕小于500px不管，大于等于500px执行 */
 .searchForm > input {
   height: 40px;
   width: 100%;
@@ -51,14 +64,25 @@ body {
   color: #ffffff;
   font-size: 16px;
 }
+.globalMain{
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
 .siteList {
   margin: 20px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+}
+@media(min-width: 500px){
+  .siteList{
+    margin-left: 0;
+    margin-right: -25px;
+  }
 }
 .siteList > li {
   margin-bottom: 10px;
+  margin-right: 25px;
 }
 .siteList .site {
   width: 160px;
@@ -71,6 +95,7 @@ body {
   border-radius: 4px;
   padding: 20px 0;
   position: relative;
+  cursor: pointer;
 }
 .siteList .site > .logo {
   width: 64px;
@@ -89,6 +114,11 @@ body {
   position: absolute;
   right: 5px;
   top: 0;
+  display: none;
+  cursor: default;
+}
+.siteList .site:hover > .close {
+  display: block;
 }
 .siteList .addButton {
   border: 1px solid blue;
