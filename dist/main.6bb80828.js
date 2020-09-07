@@ -174,15 +174,25 @@ window.onbeforeunload = function () {
   localStorage.setItem('x', string); // 在本地的localStorage存储一个x，它的值为string
 };
 
+var $inputFocus = $('input').focus(function () {
+  $inputBlur = false;
+});
+var $inputBlur = $('input').blur(function () {
+  $inputBlur = true;
+});
 $(document).on('keypress', function (e) {
+  if ($inputBlur === false) {
+    return;
+  }
+
+  console.log('执行');
   var key = e.key; // const key = e.key
 
   for (var i = 0; i < hashMap.length; i++) {
-    if (hashMap[i].logo === key.toUpperCase()) {
-      console.log(hashMap);
+    if (hashMap[i].logo.toLowerCase() === key) {
       window.open(hashMap[i].url);
     }
   }
 });
 },{}]},{},["epB2"], null)
-//# sourceMappingURL=main.850e8be7.js.map
+//# sourceMappingURL=main.6bb80828.js.map
