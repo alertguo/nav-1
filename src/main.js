@@ -62,12 +62,21 @@ window.onbeforeunload = () => {
   localStorage.setItem('x', string) // 在本地的localStorage存储一个x，它的值为string
 }
 
+let $inputFocus = $('input').focus(() => {
+  $inputBlur = false
+})
+let $inputBlur = $('input').blur(() => {
+  $inputBlur = true
+})
 $(document).on('keypress', (e) => {
+  if ($inputBlur === false) {
+    return
+  }
+  console.log('执行')
   const { key } = e
   // const key = e.key
   for (let i = 0; i < hashMap.length; i++) {
-    if (hashMap[i].logo === key.toUpperCase()) {
-      console.log(hashMap)
+    if (hashMap[i].logo.toLowerCase() === key) {
       window.open(hashMap[i].url)
     }
   }
