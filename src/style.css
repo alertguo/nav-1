@@ -25,14 +25,22 @@ img {
 /* style */
 body {
   background: #eeeeee;
+  min-width: 100vw;
+  min-height: 100vh;
+  background-image: url(./images/background.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size:cover;
+  /* 设置背景图居中，不重复，不滚动,覆盖*/
 }
 
 .globalHeader {
-  margin: 20px;
+  padding: 20px;
 }
 @media(min-width:500px){
   .globalHeader {
-    margin: 80px 0 100px 0;
+    padding: 80px 0 100px 0;
   }
 }
 .searchForm {
@@ -97,7 +105,7 @@ body {
   flex-flow: column;
   justify-content: center;
   align-items: center;
-  background: #ffffff;
+  background: #ffffff80;
   border: 1px solid #ddd;
   border-radius: 4px;
   padding: 20px 0;
@@ -142,7 +150,7 @@ body {
   flex-flow: column;
   justify-content: center;
   align-items: center;
-  background: #ffffff;
+  background: #ffffff80;
   border: 1px solid #ddd;
   border-radius: 4px;
   padding: 20px 0;

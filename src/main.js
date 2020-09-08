@@ -45,7 +45,7 @@ const render = () => {
 render()
 
 $('.addButton').on('click', () => {
-  let url = window.prompt('请问你要添加的网址是啥？')
+  let url = window.prompt('请输入需要添加的网址')
   if (url.indexOf('http') !== 0) {
     url = 'https://' + url
   }
@@ -72,7 +72,7 @@ $(document).on('keypress', (e) => {
   if ($inputBlur === false) {
     return
   }
-  console.log('执行')
+  //聚焦在input元素时终止执行
   const { key } = e
   // const key = e.key
   for (let i = 0; i < hashMap.length; i++) {

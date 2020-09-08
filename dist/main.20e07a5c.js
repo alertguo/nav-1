@@ -155,7 +155,7 @@ var render = function render() {
 
 render();
 $('.addButton').on('click', function () {
-  var url = window.prompt('请问你要添加的网址是啥？');
+  var url = window.prompt('请输入需要添加的网址');
 
   if (url.indexOf('http') !== 0) {
     url = 'https://' + url;
@@ -183,9 +183,9 @@ var $inputBlur = $('input').blur(function () {
 $(document).on('keypress', function (e) {
   if ($inputBlur === false) {
     return;
-  }
+  } //聚焦在input元素时终止执行
 
-  console.log('执行');
+
   var key = e.key; // const key = e.key
 
   for (var i = 0; i < hashMap.length; i++) {
@@ -195,4 +195,4 @@ $(document).on('keypress', function (e) {
   }
 });
 },{}]},{},["epB2"], null)
-//# sourceMappingURL=main.6bb80828.js.map
+//# sourceMappingURL=main.20e07a5c.js.map
