@@ -141,7 +141,7 @@ var render = function render() {
     // 添加index，方便删除
     var $li = $("<li>\n      <div class=\"site\">\n        <div class=\"logo\">".concat(simplifyUrl(node.url)[0], "</div>\n        <div class=\"link\">").concat(simplifyUrl(node.url), "</div>\n        <div class=\"close\">\n          <svg class=\"icon\">\n            <use xlink:href=\"#icon-close\"></use>\n          </svg>\n        </div>\n      </div>\n    </li>")).insertBefore($lastLi);
     $li.on('click', function () {
-      window.open(node.url);
+      window.open(node.url, '_blank');
     }); // 替代a标签跳转
 
     $li.on('click', '.close', function (e) {
@@ -155,7 +155,7 @@ var render = function render() {
 
 render();
 $('.addButton').on('click', function () {
-  var url = window.prompt('请输入需要添加的网址');
+  var url = window.prompt('请您输入需要添加的网址');
 
   if (url.indexOf('http') !== 0) {
     url = 'https://' + url;
@@ -195,4 +195,4 @@ $(document).on('keypress', function (e) {
   }
 });
 },{}]},{},["epB2"], null)
-//# sourceMappingURL=main.20e07a5c.js.map
+//# sourceMappingURL=main.82e8ce66.js.map

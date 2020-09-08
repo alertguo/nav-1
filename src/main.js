@@ -33,7 +33,7 @@ const render = () => {
       </div>
     </li>`).insertBefore($lastLi)
     $li.on('click', () => {
-      window.open(node.url)
+      window.open(node.url,'_blank')
     }) // 替代a标签跳转
     $li.on('click', '.close', (e) => {
       e.stopPropagation() // 阻止冒泡
@@ -45,7 +45,7 @@ const render = () => {
 render()
 
 $('.addButton').on('click', () => {
-  let url = window.prompt('请输入需要添加的网址')
+  let url = window.prompt('请您输入需要添加的网址')
   if (url.indexOf('http') !== 0) {
     url = 'https://' + url
   }
