@@ -1,3 +1,5 @@
+import $ from './jquery.3.5.1'
+
 const $siteList = $('.siteList')
 const $lastLi = $siteList.find('li.lastLi')
 const x = localStorage.getItem('x')
